@@ -1,5 +1,6 @@
 import firebase from '../../config/firebase';
 import Home from '../../App';
+import History from '../../config/history'
 // const set=(data)=>{
 //     return (dispatch)=>{
 //         dispatch({
@@ -24,9 +25,9 @@ const fb_login=(history)=>{
         firebase.database().ref('/').child(`users/${user.uid}`).set(create_user)
         .then(()=>{
           dispatch({type:"SetUser",name:create_user})
-          alert('successs')
-          // window.location('../../App.jsx')
-        })
+        alert('success')
+          // History.push('/') 
+               })
       })
     .catch(function(error) {
         var errorMessage = error.message;
@@ -52,9 +53,8 @@ const google_login=(history)=>{
       firebase.database().ref('/').child(`users/${user.uid}`).set(create_user)
       .then(()=>{
         dispatch({type:"SetUser",name:create_user})
-        alert('successs')
-        // history.push('/home')
-        // window.location=`${<Home/>}`
+        alert('success')
+        // History.push('/')
 
       })
 

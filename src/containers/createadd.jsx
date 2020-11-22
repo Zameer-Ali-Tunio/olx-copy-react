@@ -2,7 +2,7 @@ import "../assets/createadd.css";
 import React from "react";
 // import swal from "sweetalert";
 import firebase from "firebase";
-// import History from "../History";
+import History from "../config/history";
 import { Button, FormControl, Form } from "react-bootstrap";
 import NavBar from '../components/NavBar'
 
@@ -61,6 +61,7 @@ export default class CreateAdd extends React.Component {
     let imgRef = firebase.storage().ref(this.state.file.name);
     imgRef.put(this.state.file).then((snapshot) => {
       imgRef.getDownloadURL().then((url) => {
+        alert('success')
         firebase
           .firestore()
           .collection("adds")
@@ -71,7 +72,7 @@ export default class CreateAdd extends React.Component {
             url,
             uid,
           })
-          .then(function (docRef) {
+          .then( ()=> {
             History.push("/");
             // swal(
             //   "Your Add Is Live On Olx",
@@ -82,6 +83,7 @@ export default class CreateAdd extends React.Component {
           .catch((error) => alert(error));
       });
     });
+    
   };
 
   
